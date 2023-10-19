@@ -1,12 +1,25 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Photo Gallery    
-    </ion-title>
+    <ion-item>
+      <ion-title>
+        Photo Gallery
+      </ion-title>
+      <ion-avatar aria-hidden="true" slot="end">
+        <img alt="" src="assets/img/jm_logo.png" />
+      </ion-avatar>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let photo of photoService.photos; index as position">
+        <ion-img [src]="photo.webviewPath" (click)="showActionSheet(photo, position)"></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button (click)="addPhotoGallery()">
       <ion-icon name="camera"></ion-icon>
